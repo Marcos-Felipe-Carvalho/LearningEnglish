@@ -11,13 +11,19 @@ export class PanelComponent implements OnInit {
 
   public phrases: Array<Phrase> = PHRASES
   public instruction: string = "Traduza a frase:"
-  
+  public response:string
+
   constructor() { console.log(this.phrases)}
 
   ngOnInit(): void {
   }
 
-  public updateResponse(): void{
-    console.log("Teste")
+  public updateResponse(response:Event): void{
+    this.response = (<HTMLInputElement>response.target).value
+    //console.log(this.response)
+  }
+
+  public checkAnswer():void{
+    console.log("Verificar resposta: ", this.response)
   }
 }

@@ -15,7 +15,7 @@
                 <h6>{{ instruction }}</h6>
                 <p>{{phrases[0].phraseEng}}</p>
                 <div class="form-group">
-                    <textarea class="form-control" rows="3" (input)="updateResponse()">
+                    <textarea class="form-control" rows="3" (input)="updateResponse($event)">
                     </textarea>
                 </div>
             </div>
@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col">
                 <div class="d-flex justify-content-end">
-                    <button type="button" class="btn btn-primary">Verificar</button>
+                    <button type="button" class="btn btn-primary" (click)="checkAnswer()">Verificar</button>
                 </div>
             </div>
         </div>
