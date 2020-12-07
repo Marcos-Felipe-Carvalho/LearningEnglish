@@ -13,7 +13,14 @@ export class PanelComponent implements OnInit {
   public instruction: string = "Traduza a frase:"
   public response:string
 
-  constructor() { console.log(this.phrases)}
+  public round:number = 0
+  public roundPhrase: Phrase
+
+
+  constructor() { 
+    this.roundPhrase = this.phrases[this.round]
+    console.log(this.roundPhrase)
+  }
 
   ngOnInit(): void {
   }
