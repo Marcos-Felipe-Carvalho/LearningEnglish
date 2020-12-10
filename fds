@@ -1,0 +1,81 @@
+warning: LF will be replaced by CRLF in src/app/attempt/attempt.component.html.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/app/attempt/attempt.component.ts.
+The file will have its original line endings in your working directory
+warning: LF will be replaced by CRLF in src/app/panel/panel.component.ts.
+The file will have its original line endings in your working directory
+[1mdiff --git a/src/app/attempt/attempt.component.html b/src/app/attempt/attempt.component.html[m
+[1mindex 2052b24..7aaaa13 100644[m
+[1m--- a/src/app/attempt/attempt.component.html[m
+[1m+++ b/src/app/attempt/attempt.component.html[m
+[36m@@ -1,3 +1,5 @@[m
+[31m-<img [src]="emptyHeart">[m
+[32m+[m[32m<!--<img [src]="emptyHeart">[m
+ <img [src]="fullHeart">[m
+[31m-<img [src]="fullHeart">[m
+\ No newline at end of file[m
+[32m+[m[32m<img [src]="fullHeart">-->[m
+[32m+[m
+[32m+[m[32m<img *ngFor="let heart of hearts" [src]="heart.showHeart() " />[m
+\ No newline at end of file[m
+[1mdiff --git a/src/app/attempt/attempt.component.ts b/src/app/attempt/attempt.component.ts[m
+[1mindex df8b025..c3f820a 100644[m
+[1m--- a/src/app/attempt/attempt.component.ts[m
+[1m+++ b/src/app/attempt/attempt.component.ts[m
+[36m@@ -12,7 +12,7 @@[m [mexport class AttemptComponent implements OnInit {[m
+   public fullHeart :string = '/assets/full_heart.png'[m
+ [m
+   public hearts: Array<Heart> = [[m
+[31m-    new Heart(true),new Heart(true),new Heart(true)[m
+[32m+[m[32m    new Heart(true),new Heart(true),new Heart(true),new Heart(true),new Heart(true)[m
+   ][m
+ [m
+   constructor() { [m
+[1mdiff --git a/src/app/panel/panel.component.ts b/src/app/panel/panel.component.ts[m
+[1mindex 67589ea..73cc5a8 100644[m
+[1m--- a/src/app/panel/panel.component.ts[m
+[1m+++ b/src/app/panel/panel.component.ts[m
+[36m@@ -19,6 +19,8 @@[m [mexport class PanelComponent implements OnInit {[m
+   //Progress[m
+   public progress: number = 0[m
+ [m
+[32m+[m[32m  public attempts: number = 5[m
+[32m+[m
+   constructor() {[m
+     this.updatedRound()[m
+   }[m
+[36m@@ -32,6 +34,8 @@[m [mexport class PanelComponent implements OnInit {[m
+ [m
+   public checkAnswer(): void {[m
+ [m
+[32m+[m[32m    console.log(this.attempts)[m
+[32m+[m
+     if (this.roundPhrase.phrasePtBr == this.response) {[m
+       //alternar pergunta da rodada this.round++[m
+       console.log(this.round)[m
+[36m@@ -46,15 +50,21 @@[m [mexport class PanelComponent implements OnInit {[m
+ [m
+ [m
+     } else {[m
+[31m-      alert('Tradução errada')[m
+[32m+[m[32m      //diminuir a variável attempts[m
+[32m+[m[32m      this.attempts--[m
+[32m+[m[41m      [m
+[32m+[m[32m      if(this.attempts == -1){[m
+[32m+[m[32m        alert("Você perdeu :(")[m
+[32m+[m[32m      }[m
+     }[m
+[32m+[m[32m    console.log(this.attempts)[m
+ [m
+   }[m
+ [m
+[31m-  public updatedRound():void{[m
+[32m+[m[32m  public updatedRound(): void {[m
+     //define a rodada da frase[m
+     this.roundPhrase = this.phrases[this.round][m
+[31m-     //limpar resposta do usuário[m
+[31m-     this.response = ''[m
+[32m+[m[32m    //limpar resposta do usuário[m
+[32m+[m[32m    this.response = ''[m
+   }[m
+ }[m

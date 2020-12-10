@@ -19,6 +19,8 @@ export class PanelComponent implements OnInit {
   //Progress
   public progress: number = 0
 
+  public attempts: number = 5
+
   constructor() {
     this.updatedRound()
   }
@@ -31,6 +33,8 @@ export class PanelComponent implements OnInit {
   }
 
   public checkAnswer(): void {
+
+    console.log(this.attempts)
 
     if (this.roundPhrase.phrasePtBr == this.response) {
       //alternar pergunta da rodada this.round++
@@ -46,15 +50,21 @@ export class PanelComponent implements OnInit {
 
 
     } else {
-      alert('Tradução errada')
+      //diminuir a variável attempts
+      this.attempts--
+      
+      if(this.attempts == -1){
+        alert("Você perdeu :(")
+      }
     }
+    console.log(this.attempts)
 
   }
 
-  public updatedRound():void{
+  public updatedRound(): void {
     //define a rodada da frase
     this.roundPhrase = this.phrases[this.round]
-     //limpar resposta do usuário
-     this.response = ''
+    //limpar resposta do usuário
+    this.response = ''
   }
 }

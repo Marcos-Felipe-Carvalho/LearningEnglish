@@ -12,7 +12,7 @@ export class AttemptComponent implements OnInit {
   public fullHeart :string = '/assets/full_heart.png'
 
   public hearts: Array<Heart> = [
-    new Heart(true),new Heart(true),new Heart(true)
+    new Heart(true),new Heart(true),new Heart(true),new Heart(true),new Heart(true)
   ]
 
   constructor() { 
