@@ -1,6 +1,12 @@
 # LearningEnglish
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.0.
+Este repositório contém um aplicação web desenvolvida em Angular versão 10.0.0.
+
+Os objetos desta aplicação são:
+- Introduzir ao Angular
+- Entender a estrutura de um Projeto Angular
+- Conhecer alguns componentes
+- Entender o conceito de: Properting Binding, String Interpolation, Event Binding, Lifecycle Hooks... 
 
 ## Development server
 
