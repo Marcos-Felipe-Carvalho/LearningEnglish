@@ -1,13 +1,13 @@
 import { PHRASES } from './phrases-mock';
 import { Phrase } from './../shared/phrases.model';
-import { Component, OnInit, ɵConsole } from '@angular/core';
+import { Component, OnInit, ɵConsole, EventEmitter, Output, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-panel',
   templateUrl: './panel.component.html',
   styleUrls: ['./panel.component.css']
 })
-export class PanelComponent implements OnInit {
+export class PanelComponent implements OnInit, OnDestroy {
 
   public phrases: Array<Phrase> = PHRASES
   public instruction: string = "Traduza a frase:"
@@ -21,11 +21,17 @@ export class PanelComponent implements OnInit {
 
   public attempts: number = 5
 
+  @Output() public endGame: EventEmitter<string> = new EventEmitter()
+
   constructor() {
     this.updatedRound()
   }
 
   ngOnInit(): void {
+  }
+
+  ngOnDestroy():void{
+    console.log("Componente panel destruído")
   }
 
   public updateResponse(response: Event): void {
@@ -34,7 +40,6 @@ export class PanelComponent implements OnInit {
 
   public checkAnswer(): void {
 
-    console.log(this.attempts)
 
     if (this.roundPhrase.phrasePtBr == this.response) {
       //alternar pergunta da rodada this.round++
@@ -48,17 +53,19 @@ export class PanelComponent implements OnInit {
       //atualiza a barra de progresso
       this.progress = this.progress + (100 / (this.phrases.length))
 
+      //
+      if(this.round == 4){
+        this.endGame.emit('winning')
+      }
 
     } else {
       //diminuir a variável attempts
       this.attempts--
       
       if(this.attempts == -1){
-        alert("Você perdeu :(")
+        this.endGame.emit('loser')
       }
     }
-    console.log(this.attempts)
-
   }
 
   public updatedRound(): void {
